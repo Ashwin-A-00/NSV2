@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { FluidDropdown, FluidDropdownItem } from "../ui/fluid-dropdown";
 
 type EducationStepProps = {
   value: { degree: string; major: string };
@@ -7,9 +8,14 @@ type EducationStepProps = {
   onBack: () => void;
 };
 
-const DEGREE_OPTIONS = ["High School", "Bachelor's", "Master's", "PhD"];
+const degreeItems: FluidDropdownItem[] = [
+  { id: "High School", label: "High School" },
+  { id: "Bachelor's", label: "Bachelor's" },
+  { id: "Master's", label: "Master's" },
+  { id: "PhD", label: "PhD" },
+];
 
-const MAJOR_OPTIONS = [
+const majorItems: FluidDropdownItem[] = [
   "Computer Science",
   "Information Technology",
   "Electronics",
@@ -17,7 +23,7 @@ const MAJOR_OPTIONS = [
   "Business",
   "Design",
   "Mathematics",
-];
+].map((m) => ({ id: m, label: m }));
 
 export const EducationStep = ({
   value,
@@ -61,55 +67,33 @@ export const EducationStep = ({
               Let&apos;s start with your education
             </h1>
             <p className="text-sm text-white/60">
-              Tell us about your current academic background.
+              Tell us about your academic background.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-2">
+              <label className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-3">
                 Current Degree
               </label>
-              <div className="relative rounded-full border border-white/15 bg-black/50 backdrop-blur-xl shadow-[0_0_40px_rgba(15,23,42,0.8)] overflow-hidden">
-                <select
-                  className="w-full bg-transparent px-4 py-2 text-sm rounded-full outline-none appearance-none transition-colors text-white/80 focus:bg-white/5/10 focus:text-white"
-                  value={value.degree}
-                  onChange={(e) => onChange(e.target.value, value.major)}
-                >
-                  <option value="">Select your degree</option>
-                  {DEGREE_OPTIONS.map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/40 text-xs">
-                  ▼
-                </span>
-              </div>
+              <FluidDropdown
+                items={degreeItems}
+                value={value.degree}
+                onChange={(val) => onChange(val, value.major)}
+                placeholder="Select degree"
+              />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-2">
+              <label className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-3">
                 Branch / Major
               </label>
-              <div className="relative rounded-full border border-white/15 bg-black/50 backdrop-blur-xl shadow-[0_0_40px_rgba(15,23,42,0.8)] overflow-hidden">
-                <select
-                  className="w-full bg-transparent px-4 py-2 text-sm rounded-full outline-none appearance-none transition-colors text-white/80 focus:bg-white/5/10 focus:text-white"
-                  value={value.major}
-                  onChange={(e) => onChange(value.degree, e.target.value)}
-                >
-                  <option value="">Select your major</option>
-                  {MAJOR_OPTIONS.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-white/60 bg-white/10 rounded-full px-2 py-0.5 border border-white/20">
-                  ▼
-                </span>
-              </div>
+              <FluidDropdown
+                items={majorItems}
+                value={value.major}
+                onChange={(val) => onChange(value.degree, val)}
+                placeholder="Select major"
+              />
             </div>
           </div>
 

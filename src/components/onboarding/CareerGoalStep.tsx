@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { FluidDropdown, FluidDropdownItem } from "../ui/fluid-dropdown";
 
 type CareerGoalStepProps = {
   careerGoal: string;
@@ -8,7 +9,7 @@ type CareerGoalStepProps = {
   onBuildRoadmap: () => void;
 };
 
-const CAREER_OPTIONS = [
+const careerItems: FluidDropdownItem[] = [
   "Software Engineer",
   "Data Scientist",
   "Product Manager",
@@ -19,7 +20,7 @@ const CAREER_OPTIONS = [
   "Business Analyst",
   "Cloud Architect",
   "Cybersecurity Analyst",
-];
+].map((role) => ({ id: role, label: role }));
 
 type Mode = "know" | "explore";
 
@@ -105,26 +106,15 @@ export const CareerGoalStep = ({
 
           {mode === "know" && (
             <div className="mb-6">
-              <label className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-2">
+              <label className="block text-xs uppercase tracking-[0.2em] text-white/50 mb-3">
                 Choose your role
               </label>
-              <div className="relative rounded-full border border-white/15 bg-black/50 backdrop-blur-xl shadow-[0_0_40px_rgba(15,23,42,0.8)] overflow-hidden">
-                <select
-                  className="w-full bg-transparent px-4 py-2 text-sm rounded-full outline-none appearance-none transition-colors text-white/80 focus:bg-white/5/10 focus:text-white"
-                  value={careerGoal}
-                  onChange={(e) => onChange(e.target.value)}
-                >
-                  <option value="">Select a role</option>
-                  {CAREER_OPTIONS.map((role) => (
-                    <option key={role} value={role}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-white/60 bg-white/10 rounded-full px-2 py-0.5 border border-white/20">
-                  ▼
-                </span>
-              </div>
+              <FluidDropdown
+                items={careerItems}
+                value={careerGoal}
+                onChange={(val) => onChange(val)}
+                placeholder="Select a role"
+              />
             </div>
           )}
 
