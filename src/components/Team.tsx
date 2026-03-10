@@ -38,7 +38,7 @@ export const Team = () => {
               <BlurText>
                 <h2 className="text-5xl md:text-7xl font-light tracking-tighter">
                   A team <br />
-                  <span className="text-white/40 italic">that reveals</span>
+                  <span className="text-red-500 italic">that reveals</span>
                 </h2>
               </BlurText>
             </div>
@@ -57,22 +57,50 @@ export const Team = () => {
                 key={member.name}
                 className="group border-b border-white/10 py-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center cursor-pointer relative overflow-hidden"
                 whileHover="hover"
+                initial="initial"
               >
+                {/* White background block that slides up from bottom */}
                 <motion.div 
-                  className="absolute inset-0 bg-white z-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500"
+                  className="absolute inset-0 bg-white z-0"
+                  variants={{
+                    initial: { y: "100%" },
+                    hover: { y: 0 }
+                  }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 />
                 
-                <div className="md:col-span-4 relative z-10 transition-colors duration-500 group-hover:text-black px-4">
+                <motion.div 
+                  className="md:col-span-4 relative z-20 px-4"
+                  variants={{
+                    initial: { color: "#ffffff" },
+                    hover: { color: "#000000" }
+                  }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <span className="text-3xl md:text-5xl font-light">{member.name}</span>
-                </div>
+                </motion.div>
                 
-                <div className="md:col-span-3 relative z-10 transition-colors duration-500 group-hover:text-black/60 px-4">
+                <motion.div 
+                  className="md:col-span-3 relative z-20 px-4"
+                  variants={{
+                    initial: { color: "rgba(255, 255, 255, 0.4)" },
+                    hover: { color: "rgba(0, 0, 0, 0.6)" }
+                  }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <span className="text-sm uppercase tracking-widest">{member.role}</span>
-                </div>
+                </motion.div>
                 
-                <div className="md:col-span-5 relative z-10 transition-colors duration-500 group-hover:text-black/50 px-4">
+                <motion.div 
+                  className="md:col-span-5 relative z-20 px-4"
+                  variants={{
+                    initial: { color: "rgba(255, 255, 255, 0.6)" },
+                    hover: { color: "rgba(0, 0, 0, 0.7)" }
+                  }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <p className="text-sm max-w-sm">{member.bio}</p>
-                </div>
+                </motion.div>
 
                 {/* Floating Image on Hover */}
                 <motion.div

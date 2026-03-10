@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Lenis from "lenis";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
+import { HowItWorksBackground } from "./components/HowItWorksBackground";
 import { Mission } from "./components/Mission";
 import { TrendingPaths } from "./components/Catalog";
+import { TrustedBy } from "./components/TrustedBy";
 import { Team } from "./components/Team";
 import { CTA } from "./components/CTA";
 import { Footer } from "./components/Footer";
@@ -44,6 +47,20 @@ export type UserProfile = {
 
 export default function App() {
   const [view, setView] = useState<ViewId>("landing");
+
+  useEffect(() => {
+    if (view === "landing") {
+      const lenis = new Lenis();
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+      return () => {
+        lenis.destroy();
+      };
+    }
+  }, [view]);
   const [profile, setProfile] = useState<UserProfile>({
     name: "",
     email: "",
@@ -65,10 +82,12 @@ export default function App() {
           <>
             <Navbar />
             <Hero onStartJourney={() => navigate("auth")} />
+            <HowItWorksBackground />
             <Mission />
             <TrendingPaths />
+            <TrustedBy />
             <Team />
-            <CTA />
+            <CTA onStartJourney={() => navigate("auth")} />
             <Footer />
           </>
         )}
