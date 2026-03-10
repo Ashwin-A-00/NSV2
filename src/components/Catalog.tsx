@@ -46,7 +46,7 @@ const trendingJobs = [
     title: "Data Scientist",
     category: "Analytics",
     salary: "₹95,00,000 - ₹1,55,00,000",
-    src: "https://images.unsplash.com/photo-1551288049-bbda38a88ad8?q=80&w=2070&auto=format&fit=crop",
+    src: "/datas.png",
     alt: "Data Scientist"
   },
   {

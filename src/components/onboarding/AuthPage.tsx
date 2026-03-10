@@ -49,11 +49,10 @@ export const AuthPage = ({ onContinue, onBack }: AuthPageProps) => {
 
         <div className="flex gap-4 mb-6 border-b border-white/10">
           <button
-          className={`pb-3 text-sm font-light tracking-wide relative ${
-              activeTab === "login"
+            className={`pb-3 text-sm font-light tracking-wide relative ${activeTab === "login"
                 ? "text-white"
                 : "text-white/50 hover:text-white/80"
-            }`}
+              }`}
             onClick={() => setActiveTab("login")}
           >
             Login
@@ -62,11 +61,10 @@ export const AuthPage = ({ onContinue, onBack }: AuthPageProps) => {
             )}
           </button>
           <button
-            className={`pb-3 text-sm font-light tracking-wide relative ${
-              activeTab === "signup"
+            className={`pb-3 text-sm font-light tracking-wide relative ${activeTab === "signup"
                 ? "text-white"
                 : "text-white/50 hover:text-white/80"
-            }`}
+              }`}
             onClick={() => setActiveTab("signup")}
           >
             Signup
@@ -123,17 +121,13 @@ export const AuthPage = ({ onContinue, onBack }: AuthPageProps) => {
             whileTap={canSubmit ? { scale: 0.96 } : undefined}
             type="submit"
             disabled={!canSubmit}
-            className={`mt-4 w-full py-2.5 text-sm tracking-[0.18em] uppercase border border-white/20 bg-white/10 text-white rounded-full backdrop-blur-md hover:bg-accent hover:border-accent hover:text-white transition-colors ${
-              !canSubmit ? "opacity-40 cursor-not-allowed" : ""
-            }`}
+            className={`mt-4 w-full py-2.5 text-sm tracking-[0.18em] uppercase border border-white/20 bg-white/10 text-white rounded-full backdrop-blur-md hover:bg-accent hover:border-accent hover:text-white transition-colors ${!canSubmit ? "opacity-40 cursor-not-allowed" : ""
+              }`}
           >
             {activeTab === "login" ? "Login" : "Sign Up"}
           </motion.button>
 
-          <p className="mt-3 text-[10px] text-white/40 leading-relaxed">
-            No real account is created. Anything you type is accepted so you can
-            experience the full NextStep onboarding and dashboard.
-          </p>
+
         </form>
       </div>
     </OnboardingLayout>

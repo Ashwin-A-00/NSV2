@@ -3,28 +3,28 @@ import { BlurText, LinkSlide } from "./UI";
 
 const team = [
   {
-    name: "Sophia Laurent",
-    role: "The main mentor",
-    bio: "Sophia creates paths where each individual reveals their shape, rhythm, and character. She works with minimalism as a precise tool.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
+    name: "Adarsh Subhash",
+    role: "Ideation Lead",
+    bio: "Adarsh specializes in transforming abstract concepts into structured and innovative solutions. He drives the creative direction of the project by identifying impactful ideas, refining problem statements, and shaping the overall vision of the product.",
+    image: "/Adarsh.jpeg"
   },
   {
-    name: "Isabella Fox",
-    role: "Career-designer",
-    bio: "Isabella selects strategies that become a natural extension of your life, rather than just a decoration on top.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+    name: "Karthik L",
+    role: "Feature Development Engineer",
+    bio: "Karthik focuses on translating concepts into functional product capabilities. He works on implementing new features, ensuring they integrate smoothly with existing systems while maintaining performance, reliability, and scalability..",
+    image: "/Karthik.jpeg"
   },
   {
-    name: "Marcus Chen",
-    role: "Growth Strategist",
-    bio: "Marcus identifies hidden opportunities and helps you build a roadmap to reach your full potential with clarity and purpose.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop"
+    name: "Ashwin A",
+    role: "UI/UX Designer",
+    bio: "Ashwin crafts intuitive and visually engaging user experiences that transform complex ideas into seamless digital interactions. His focus lies in creating clean, user-centered designs that enhance usability while maintaining aesthetic precision.",
+    image: "/Ashwin.jpeg"
   },
   {
-    name: "Elena Rodriguez",
-    role: "Skill Architect",
-    bio: "Elena bridges the gap between your current abilities and your dream role, crafting personalized learning and development plans.",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974&auto=format&fit=crop"
+    name: "Adwaith K S",
+    role: "AI Implementation Engineer",
+    bio: "Adwaith integrates intelligent systems into the product by designing and implementing AI-driven functionalities. His work focuses on leveraging machine learning and automation to enhance the platform’s capabilities and deliver smarter user experiences.",
+    image: "/Adwaith.jpeg"
   }
 ];
 
@@ -53,14 +53,14 @@ export const Team = () => {
 
           <div className="space-y-1">
             {team.map((member, index) => (
-              <motion.div 
+              <motion.div
                 key={member.name}
                 className="group border-b border-white/10 py-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center cursor-pointer relative overflow-hidden"
                 whileHover="hover"
                 initial="initial"
               >
                 {/* White background block that slides up from bottom */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 bg-white z-0"
                   variants={{
                     initial: { y: "100%" },
@@ -68,8 +68,8 @@ export const Team = () => {
                   }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 />
-                
-                <motion.div 
+
+                <motion.div
                   className="md:col-span-4 relative z-20 px-4"
                   variants={{
                     initial: { color: "#ffffff" },
@@ -79,8 +79,8 @@ export const Team = () => {
                 >
                   <span className="text-3xl md:text-5xl font-light">{member.name}</span>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="md:col-span-3 relative z-20 px-4"
                   variants={{
                     initial: { color: "rgba(255, 255, 255, 0.4)" },
@@ -90,8 +90,8 @@ export const Team = () => {
                 >
                   <span className="text-sm uppercase tracking-widest">{member.role}</span>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="md:col-span-5 relative z-20 px-4"
                   variants={{
                     initial: { color: "rgba(255, 255, 255, 0.6)" },
@@ -110,8 +110,8 @@ export const Team = () => {
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   className="hidden lg:block absolute right-20 top-1/2 -translate-y-1/2 w-40 h-56 pointer-events-none z-20"
                 >
-                  <img 
-                    src={member.image} 
+                  <img
+                    src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover grayscale"
                     referrerPolicy="no-referrer"
