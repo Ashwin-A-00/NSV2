@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import type { UserProfile } from "../../App";
 import { getCareerById, getTopCareerMatch, type AIGeneratedData, generateNodeResources, generateRoadmapForCareer } from "../../lib/ai";
+import { LoadingScreen } from "./LoadingScreen";
 
 type RoadmapPageProps = {
   profile: UserProfile;
@@ -335,16 +336,11 @@ export const RoadmapPage = ({ profile, selectedCareerId, aiData, onBack }: Roadm
 
   if (buildingRoadmap) {
     return (
-      <section className="relative min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-20 h-20 border-4 border-white/10 border-t-accent rounded-full animate-spin mx-auto mb-6" />
-          <h2 className="text-xl md:text-2xl font-light tracking-tight">Building your AI roadmap…</h2>
-          <p className="text-sm text-white/50 mt-2">
-            Synthesizing the best learning path for{" "}
-            <span className="text-white/80">{goal}</span>
-          </p>
-        </div>
-      </section>
+      <LoadingScreen
+        title="Building your AI roadmap..."
+        subtitle="Synthesizing the best learning path for"
+        highlight={goal}
+      />
     );
   }
 
@@ -479,11 +475,11 @@ export const RoadmapPage = ({ profile, selectedCareerId, aiData, onBack }: Roadm
                   }
                 }}
                 disabled={state === "locked"}
-                className={`absolute flex flex-col items-start justify-center px-5 py-4 text-xs md:text-sm border rounded-2xl backdrop-blur-xl transition-all w-[160px] md:w-[200px] ${isCurrent
-                    ? "bg-white/10 border-white text-white shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:bg-white/20 hover:scale-105 cursor-pointer z-10"
+                className={`absolute flex flex-col items-start justify-center px-5 py-4 text-xs md:text-sm border rounded-2xl backdrop-blur-xl transition-all duration-300 w-[160px] md:w-[200px] ${isCurrent
+                    ? "bg-accent/5 border-accent/40 text-white shadow-[0_0_18px_rgba(167,45,37,0.25)] hover:shadow-[0_0_28px_rgba(167,45,37,0.4)] hover:border-accent/60 hover:scale-105 cursor-pointer z-10"
                     : isCompleted
-                      ? "bg-emerald-500/10 border-emerald-500/50 text-emerald-50 hover:bg-emerald-500/20 hover:scale-105 cursor-pointer z-10"
-                      : "bg-black/60 border-white/5 text-white/30 cursor-not-allowed grayscale"
+                      ? "bg-emerald-500/5 border-emerald-500/30 text-emerald-50 shadow-[0_0_16px_rgba(52,211,153,0.15)] hover:shadow-[0_0_24px_rgba(52,211,153,0.25)] hover:border-emerald-500/50 hover:scale-105 cursor-pointer z-10"
+                      : "bg-black/60 border-white/5 text-white/25 cursor-not-allowed"
                   }`}
                 style={{
                   left: `${pos.x}%`,
@@ -492,9 +488,9 @@ export const RoadmapPage = ({ profile, selectedCareerId, aiData, onBack }: Roadm
                 }}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className={`w-2 h-2 rounded-full ${isCompleted ? 'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]' : isCurrent ? 'bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]' : 'bg-white/20'}`} />
-                  <span className="text-[10px] uppercase tracking-[0.15em] opacity-70 font-medium">
-                    {isCompleted ? "Completed" : isCurrent ? "Available" : "Locked"}
+                  <span className={`w-1.5 h-1.5 rounded-full ${isCompleted ? 'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.9)]' : isCurrent ? 'bg-accent shadow-[0_0_6px_rgba(167,45,37,0.9)]' : 'bg-white/15'}`} />
+                  <span className="text-[10px] uppercase tracking-[0.15em] opacity-60 font-medium">
+                    {isCompleted ? "Completed" : isCurrent ? "Up Next" : "Locked"}
                   </span>
                 </div>
                 <span className="font-medium text-left leading-snug">{node.title}</span>
@@ -503,18 +499,18 @@ export const RoadmapPage = ({ profile, selectedCareerId, aiData, onBack }: Roadm
           })}
 
           {/* Legend */}
-          <div className="absolute top-8 left-8 text-[11px] text-white/80 flex gap-6">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+          <div className="absolute top-5 left-5 text-[10px] text-white/50 flex gap-4">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
               <span>Completed</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-              <span>Available</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_6px_rgba(167,45,37,0.8)]" />
+              <span>Up Next</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-              <span className="text-white/40">Locked</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-white/15" />
+              <span className="text-white/30">Locked</span>
             </div>
           </div>
         </div>
@@ -593,7 +589,7 @@ export const RoadmapPage = ({ profile, selectedCareerId, aiData, onBack }: Roadm
               </button>
               {activeNode.state !== "completed" && (
                 <button
-                  className="px-4 py-2 text-xs uppercase tracking-[0.18em] border border-white/20 bg-white text-black font-semibold rounded-full backdrop-blur-md hover:bg-white/80 transition-colors"
+                  className="px-4 py-2 text-xs uppercase tracking-[0.18em] border border-white bg-white text-black font-semibold rounded-full backdrop-blur-md hover:bg-accent hover:border-accent hover:text-white transition-all duration-200 active:scale-95"
                   onClick={handleMarkComplete}
                 >
                   Mark as Complete

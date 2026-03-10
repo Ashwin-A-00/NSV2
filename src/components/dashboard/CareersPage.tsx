@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import type { UserProfile } from "../../App";
 import { generateCareerSuggestions, type AICareerSuggestion, type AIGeneratedData } from "../../lib/ai";
+import { LoadingScreen } from "./LoadingScreen";
 
 type CareersPageProps = {
   profile: UserProfile;
@@ -48,19 +49,10 @@ export const CareersPage = ({
 
   if (loading) {
     return (
-      <section className="relative min-h-screen bg-gradient-to-b from-black via-black to-zinc-950 text-white flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-md"
-        >
-          <div className="w-16 h-16 border-4 border-white/10 border-t-accent rounded-full animate-spin mx-auto mb-6" />
-          <h2 className="text-2xl font-light tracking-tight mb-2">AI is analyzing your profile…</h2>
-          <p className="text-sm text-white/50 leading-relaxed">
-            Matching your education, topics and interests to the best-fit career paths for you.
-          </p>
-        </motion.div>
-      </section>
+      <LoadingScreen
+        title="AI is analyzing your profile..."
+        subtitle="Matching your education, interests and topics to the best-fit career paths for you."
+      />
     );
   }
 
