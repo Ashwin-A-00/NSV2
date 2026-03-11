@@ -19,15 +19,15 @@ export const Footer = () => {
                 <span className="italic font-normal text-accent">touch</span>
               </h2>
             </BlurText>
-            
+
             <div className="space-y-8">
               <div className="space-y-2">
                 <p className="text-[10px] uppercase tracking-widest text-white/40">Email</p>
-                <LinkSlide href="mailto:hello@nextstep.com" className="text-2xl md:text-4xl font-light">hello@nextstep.com</LinkSlide>
+                <LinkSlide href="mailto:nextstep@gmail.com" className="text-2xl md:text-4xl font-light">nextstep@gmail.com</LinkSlide>
               </div>
               <div className="space-y-2">
                 <p className="text-[10px] uppercase tracking-widest text-white/40">Phone</p>
-                <LinkSlide href="tel:+1234567890" className="text-2xl md:text-4xl font-light">+1 (234) 567-890</LinkSlide>
+                <LinkSlide href="tel:+91 8848045123" className="text-2xl md:text-4xl font-light">+91 8848045123</LinkSlide>
               </div>
             </div>
           </div>
